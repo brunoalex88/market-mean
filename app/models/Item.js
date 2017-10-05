@@ -17,6 +17,6 @@ module.exports = function() {
         }
     });
 
-    return mongoose.Model('Item', schema);
+    return mongoose.model('Item', schema);
 
 };
