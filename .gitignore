@@ -1,4 +1,4 @@
 node_modules
-redis
+databases
 package-lock.json
 public/vendor

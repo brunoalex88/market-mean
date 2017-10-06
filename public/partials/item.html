@@ -1,5 +1,14 @@
-<div ng-controller="ItemController" class="row">
-    <div class="col-md-1">
-        
-    </div>
+<div layout="row" ng-cloak ng-controller="ItemController">
+    <table class="table table-hover table-striped table-condensed table-responsive">
+        <tr>
+            <th>Descrição</th>
+            <th>Estoque Mínimo</th>		
+            <th>Estoque Atual</th>
+        </tr>
+        <tr ng-repeat="produto in produtos">
+            <td>{{produto.descricao}}</td>
+            <td>{{produto.estoqueMinimo}}</td>
+            <td>{{produto.estoqueAtual}}</td>
+        </tr>    
+    </table>    
 </div>

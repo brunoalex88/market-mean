@@ -1,4 +1,4 @@
-angular.module('market-mean', ['ngRoute'])
+angular.module('market-mean', ['ngRoute', 'ngResource'])
      .config(function($routeProvider) {   
 
 		$routeProvider.when('/item', {

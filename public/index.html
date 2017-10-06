@@ -1,18 +1,35 @@
 <!doctype html>
 <html ng-app="market-mean">
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Market MEAN</title>
-        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css">
-	</head>
-	<body class="container" ngcloak>
+        <!-- <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css"> -->
+        <link rel="stylesheet" href="vendor/angular-material/angular-material.css">
+    </head>
+
+    <body ngcloak>
+
+<!--         <nav class="navbar navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/item">Produtos</a></li>         
+                </ul>
+            </div>
+        </nav> -->
+
         <div ng-view></div>
-        
+
         <script src="vendor/angular/angular.js"></script>
         <script src="vendor/angular-route/angular-route.js"></script>
+        <script src="vendor/angular-resource/angular-resource.js"></script>
+        <script src="vendor/angular-animate/angular-animate.js"></script>
+        <script src="vendor/angular-aria/angular-aria.js"></script>
+        <script src="vendor/angular-material/angular-material.js"></script>
+        <script src="vendor/angular-messages/angular-messages.js"></script>
         <script src="js/main.js"></script>
         <script src="js/controllers/ItemController.js"></script>
-	</body>
+        <script src="js/services/ItemService.js"></script>
+    </body>
 </html>
