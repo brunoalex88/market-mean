@@ -6,11 +6,11 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
     function listaProdutos() {
         Item.query(function(produtos) {
             $scope.produtos = produtos;
-            $scope.mensagem = {texto: ''};
+            $scope.mensagem = {};
         },
         function(erro) {
             console.log('Erro ao buscar os itens cadastrados: ' + erro);
-            mensagem.texto = 'Erro ao buscar os itens cadastrados: ' + erro;
+            $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro};
         });
     };
 

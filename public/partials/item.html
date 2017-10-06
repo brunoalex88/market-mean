@@ -1,4 +1,9 @@
 <div layout="row" ng-cloak ng-controller="ItemController">
+
+    <p ng-show="mensagem.texto">
+        {{mensagem.texto}}
+    </p>
+
     <table class="table table-hover table-striped table-condensed table-responsive">
         <tr>
             <th>Descrição</th>
@@ -6,7 +11,7 @@
             <th>Estoque Atual</th>
         </tr>
         <tr ng-repeat="produto in produtos">
-            <td>{{produto.descricao}}</td>
+            <td class="col-md-8">{{produto.descricao}}</td>
             <td>{{produto.estoqueMinimo}}</td>
             <td>{{produto.estoqueAtual}}</td>
         </tr>    
