@@ -4,16 +4,62 @@
         {{mensagem.texto}}
     </p>
 
+    <div class="form-group">
+        <label for="search">Filtrar produtos</label>
+        <input type="search" ng-model="filtro" 
+                placeholder="parte do nome" class="form-control">    
+    </div>
+    
+    <div id="produtoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title">Atualizar Produto</h4>
+                </div>
+                
+                <div class="modal-body">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" ng-model="produto.descricao" 
+                            placeholder="descrição" class="form-control">
+                    
+                    <label for="estoqueMinimo" style="padding-top: 10px">Estoque Mínimo</label>
+                    
+                    <div class="row">
+                        <input type="text" ng-model="produto.estoqueMinimo" 
+                                placeholder="estoque mínimo" class="col-md-6">
+                
+                        <button class="btn btn-default btn-xs col-md-6">+</button>
+                    </div>
+
+                    <label for="estoqueAtual" style="padding-top: 10px">Estoque Atual</label>
+                    <input type="text" ng-model="produto.estoqueAtual" 
+                            placeholder="estoque atual" class="form-control">
+                </div>
+            
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" 
+                            ng-click="salvarProduto()">Salvar</button>
+                    <button type="button" class="btn btn-default" 
+                            data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table table-hover table-striped table-condensed table-responsive">
         <tr>
             <th>Descrição</th>
             <th>Estoque Mínimo</th>		
             <th>Estoque Atual</th>
         </tr>
-        <tr ng-repeat="produto in produtos">
+        <tr ng-repeat="produto in produtos | filter: filtro" 
+                ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal">
             <td class="col-md-8">{{produto.descricao}}</td>
-            <td>{{produto.estoqueMinimo}}</td>
-            <td>{{produto.estoqueAtual}}</td>
+            <td class="col-md-2">{{produto.estoqueMinimo}}</td>
+            <td class="col-sm-2">{{produto.estoqueAtual}}</td>
         </tr>    
     </table>    
+
 </div>
