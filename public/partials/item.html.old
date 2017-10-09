@@ -1,0 +1,27 @@
+<div ng-controller="ItemController" ng-cloak layout-gt-sm="row" layout="column">
+
+  <div flex-gt-sm="100" flex>
+        
+    <md-toolbar leyout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <span>Produtos</span>
+      </div>
+    </md-toolbar>
+    
+    <md-content>
+        <md-list flex>
+            <!-- <md-subheader class="md-no-sticky">Produtos cadastrados</md-subheader> -->
+            <md-list-item class="md-3-line" ng-repeat="produto in produtos" ng-click="showDialog($event)">
+              <md-divider ></md-divider>
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ produto.descricao }}</h3>
+                <p>Estoque Mínimo: {{ produto.estoqueMinimo }}</p>
+                <p>Estoque Atual: {{ produto.estoqueAtual }}</p>
+              </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+        </md-list>      
+    </md-content>
+  </div>
+
+</div>
