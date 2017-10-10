@@ -1,6 +1,7 @@
-angular.module('market-mean').controller('ItemController', function($scope, Item) {
+angular.module('market-mean').controller('ItemController', function($scope, Item, Buy) {
 
     $scope.produtos = [];
+    $scope.produtosComprar = [];
     $scope.mensagem = {texto: ''};
     $scope.filtro = '';
     $scope.produto = {};
@@ -47,18 +48,20 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
     };
 
     $scope.remover = function(produto) {
-        Item.delete({id: produto._id},
-            listaProdutos,
-            function(erro) {
-                console.log('Erro ao excluir o item: ' + erro);
-                $scope.mensagem = {
-                    texto: 'Erro ao excluir o item: ' + erro
-                };
+		Item.delete({id: produto._id},
+			listaProdutos,
+			function(erro) {
+				console.log(erro);							
+				$scope.mensagem = {
+					texto: 'Não foi possível remover contato'
+				};
             }
         );
     };
 
     function listaProdutos() {
+        console.log('Lista Produtos');
+
         Item.query(function(produtos) {
             $scope.produtos = produtos;
             $scope.mensagem = {};
@@ -68,6 +71,25 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
             $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.message};
         });
     };
+
+    function listaCompras() {
+        console.log('Lista Compras');
+
+        Buy.query(function(produtosComprar) {
+            $scope.produtosComprar = produtosComprar;
+            $scope.mensagem = {};
+        },
+        function(erro) {
+            console.log('Erro ao buscar os itens cadastrados: ' + erro);
+            $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.message};            
+        });
+    };
+
+    function callCompras() {
+        console.log('Call Compras');
+        listaCompras();
+        $window.location.href = '#/comprar';
+    }
 
     listaProdutos();
 

@@ -8,6 +8,11 @@ angular.module('market-mean', ['ngRoute', 'ngResource', 'angular-loading-bar'])
 			controller: 'ItemController'
         });
         
+		$routeProvider.when('/comprar', {
+			templateUrl: 'partials/buy.html',
+			controller: 'ItemController'
+        });
+
         $routeProvider.otherwise({redirectTo: '/'});
 
     })

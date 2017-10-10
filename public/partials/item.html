@@ -26,7 +26,9 @@
             <td class="col-md-9">{{produto.descricao}}</td>
             <td class="col-md-1">{{produto.estoqueMinimo}}</td>
             <td class="col-sm-1">{{produto.estoqueAtual}}</td>
-            <td class="col-sm-1"><a ng-href="" ng-click="remover(produto)">Remover</a></td>
+            <td class="col-sm-1">
+                <a ng-href="" ng-click="remover(produto)"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
         </tr>    
     </table> 
 
