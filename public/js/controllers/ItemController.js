@@ -60,7 +60,6 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
     };
 
     function listaProdutos() {
-        console.log('Lista Produtos');
 
         Item.query(function(produtos) {
             $scope.produtos = produtos;
@@ -73,8 +72,6 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
     };
 
     function listaCompras() {
-        console.log('Lista Compras');
-
         Buy.query(function(produtosComprar) {
             $scope.produtosComprar = produtosComprar;
             $scope.mensagem = {};
@@ -85,12 +82,7 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
         });
     };
 
-    function callCompras() {
-        console.log('Call Compras');
-        listaCompras();
-        $window.location.href = '#/comprar';
-    }
-
     listaProdutos();
+    listaCompras();
 
 });

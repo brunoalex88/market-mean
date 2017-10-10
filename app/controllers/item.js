@@ -83,16 +83,12 @@ module.exports = function(app) {
             Item.find().exec()
                 .then(function(items) {
                     comprar = [];
-                    for (item in items) {
-                        
-                        if (items[item].estoqueAtual <= items[item].estoqueMinimo) {
+                    for (item in items) {    
+                        if (items[item].estoqueAtual < items[item].estoqueMinimo)
                             comprar.push(items[item]);
-                            console.log('Item: ' + items[item]);
-                        }
-                    }
 
+                    }   
                     res.json(comprar);
-
                 },
                 function(erro) {
                     console.log('Erro ao buscar o item: ' + erro);

@@ -11,13 +11,12 @@
             <th>Estoque Atual</th>
             <th></th>
         </tr>
-        <tr ng-repeat="produto in produtosComprar" 
-                ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal">
+        <tr ng-repeat="produto in produtosComprar">
             <td class="col-md-9">{{produto.descricao}}</td>
             <td class="col-md-1">{{produto.estoqueMinimo}}</td>
             <td class="col-sm-1">{{produto.estoqueAtual}}</td>
             <td class="col-sm-1">
-                <a ng-href="" ng-click="remover(produto)"><span class="glyphicon glyphicon-trash"></span></a>
+                <!-- <a ng-href="" ng-click="remover(produto)"><span class="glyphicon glyphicon-trash"></span></a> -->
             </td>
         </tr>    
     </table>     
