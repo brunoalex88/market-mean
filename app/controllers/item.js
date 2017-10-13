@@ -79,6 +79,27 @@ module.exports = function(app) {
             );
         };
 
+<<<<<<< HEAD
+=======
+        controller.listaCompras = function(req, res) {
+            Item.find().exec()
+                .then(function(items) {
+                    comprar = [];
+                    for (item in items) {    
+                        if (items[item].estoqueAtual < items[item].estoqueMinimo)
+                            comprar.push(items[item]);
+
+                    }   
+                    res.json(comprar);
+                },
+                function(erro) {
+                    console.log('Erro ao buscar o item: ' + erro);
+                    res.status(500).json('Erro ao buscar o item: ' + erro);
+                }
+            )
+        };
+    
+>>>>>>> 7ab40f63d78fc7af1b9fb1933546eb9c99659d8a
         return controller;
     
     };

@@ -9,6 +9,7 @@
         <input type="search" ng-model="filtro" 
                 placeholder="parte do nome" class="form-control">    
     </div>
+<<<<<<< HEAD
     <div layout="row" style="margin-bottom: 10px">
         <a ng-href="" ng-click="alterar()" data-toggle="modal" 
                 data-target="#produtoModal">Novo produto</a>
@@ -21,6 +22,18 @@
             <th>Descrição</th>
             <th>Preciso</th>		
             <th>Tenho</th>
+=======
+    <div class="form-group">
+        <a ng-href="" ng-click="alterar()" data-toggle="modal" 
+                data-target="#produtoModal">Novo produto</a>
+    </div>
+
+    <table class="table table-hover table-striped table-condensed table-responsive">
+        <tr>
+            <th>Descrição</th>
+            <th>Estoque Mínimo</th>		
+            <th>Estoque Atual</th>
+>>>>>>> 7ab40f63d78fc7af1b9fb1933546eb9c99659d8a
             <th></th>
         </tr>
         <tr ng-repeat="produto in produtos | filter: filtro" 

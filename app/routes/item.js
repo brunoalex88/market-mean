@@ -10,4 +10,7 @@ module.exports = function(app) {
         .get(controller.listItem)
         .delete(controller.removeItem);
 
+    app.route('/buy')
+        .get(controller.listaCompras);
+
 };
