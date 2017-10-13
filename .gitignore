@@ -1,5 +1,7 @@
 node_modules
+node_modules_
 databases
 package-lock.json
 public/vendor
 *.bat
+*.log.*
