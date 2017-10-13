@@ -1,4 +1,4 @@
-angular.module('market-mean').controller('ItemController', function($scope, Item, Buy) {
+angular.module('market-mean').controller('ItemController', function($scope, Item) {
 
     $scope.produtos = [];
     $scope.produtosComprar = [];
@@ -27,7 +27,6 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
         });
     };
 
-<<<<<<< HEAD
     $scope.listaCompras = function() {
         var lista = [];
         
@@ -38,8 +37,6 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
         $scope.produtos = lista;
     };
 
-=======
->>>>>>> 7ab40f63d78fc7af1b9fb1933546eb9c99659d8a
     $scope.aumentaEstoqueMinimo = function() {
         $scope.produto.estoqueMinimo++;
     };
@@ -81,24 +78,9 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
         function(erro) {
             console.log('Erro ao buscar os itens cadastrados: ' + erro);
             $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.message};
-<<<<<<< HEAD
-=======
-        });
-    };
-
-    function listaCompras() {
-        Buy.query(function(produtosComprar) {
-            $scope.produtosComprar = produtosComprar;
-            $scope.mensagem = {};
-        },
-        function(erro) {
-            console.log('Erro ao buscar os itens cadastrados: ' + erro);
-            $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.message};            
->>>>>>> 7ab40f63d78fc7af1b9fb1933546eb9c99659d8a
         });
     };
 
     listaProdutos();
-    listaCompras();
 
 });

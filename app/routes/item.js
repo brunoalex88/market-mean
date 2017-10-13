@@ -9,8 +9,5 @@ module.exports = function(app) {
     app.route('/item/:id')
         .get(controller.listItem)
         .delete(controller.removeItem);
-
-    app.route('/buy')
-        .get(controller.listaCompras);
-
+        
 };
