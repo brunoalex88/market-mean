@@ -9,57 +9,85 @@
         <input type="search" ng-model="filtro" 
                 placeholder="parte do nome" class="form-control">    
     </div>
+    <div layout="row" style="margin-bottom: 10px">
+        <a ng-href="" ng-click="alterar()" data-toggle="modal" 
+                data-target="#produtoModal">Novo produto</a>
+        <span class="divider-vertical"></span>
+        <a nh-href="" ng-click="listaCompras()">Gerar Lista de Compras</a>
+    </div>
     
-    <div id="produtoModal" class="modal fade" role="dialog">
+    <table class="table table-hover table-striped table-condensed table-responsive">
+        <tr>
+            <th>Descrição</th>
+            <th>Preciso</th>		
+            <th>Tenho</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="produto in produtos | filter: filtro" 
+                ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal">
+            <td class="col-md-9">{{produto.descricao}}</td>
+            <td class="col-md-1">{{produto.estoqueMinimo}}</td>
+            <td class="col-sm-1">{{produto.estoqueAtual}}</td>
+            <td class="col-sm-1">
+                <a ng-href="" ng-click="remover(produto)"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>    
+    </table> 
+
+    <div id="produtoModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
-      
+        
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title">Atualizar Produto</h4>
+                    <h4 class="modal-title">{{modalTitle}}</h4>
                 </div>
                 
                 <div class="modal-body">
                     <label for="descricao">Descrição</label>
                     <input type="text" ng-model="produto.descricao" 
-                            placeholder="descrição" class="form-control">
+                            placeholder="descrição" class="form-control"
+                            ng-attr-autofocus>
                     
                     <label for="estoqueMinimo" style="padding-top: 10px">Estoque Mínimo</label>
-                    
-                    <div class="row">
-                        <input type="text" ng-model="produto.estoqueMinimo" 
-                                placeholder="estoque mínimo" class="col-md-6">
-                
-                        <button class="btn btn-default btn-xs col-md-6">+</button>
+                    <div class="input-group spinner">
+                        <input type="text" class="form-control" ng-model="produto.estoqueMinimo" 
+                                only-digits>
+                        <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" type="button" ng-click="aumentaEstoqueMinimo()">
+                                <i class="fa fa-caret-up"></i>
+                            </button>
+                            <button class="btn btn-default" type="button" ng-click="diminuiEstoqueMinimo()">
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                        </div>
                     </div>
-
+    
                     <label for="estoqueAtual" style="padding-top: 10px">Estoque Atual</label>
-                    <input type="text" ng-model="produto.estoqueAtual" 
-                            placeholder="estoque atual" class="form-control">
+                    <div class="input-group spinner">
+                            <input type="text" class="form-control" ng-model="produto.estoqueAtual"
+                                    only-digits>
+                            <div class="input-group-btn-vertical">
+                                <button class="btn btn-default" type="button"
+                                        ng-click="aumentaEstoqueAtual()">
+                                    <i class="fa fa-caret-up"></i>
+                                </button>
+                                <button class="btn btn-default" type="button"
+                                        ng-click="diminuiEstoqueAtual()">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                            </div>
+                    </div>
                 </div>
             
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" 
-                            ng-click="salvarProduto()">Salvar</button>
+                            ng-click="salvarProduto()" data-dismiss="modal">Salvar</button>
                     <button type="button" class="btn btn-default" 
-                            data-dismiss="modal">Fechar</button>
+                            ng-click="listaProdutos()" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <table class="table table-hover table-striped table-condensed table-responsive">
-        <tr>
-            <th>Descrição</th>
-            <th>Estoque Mínimo</th>		
-            <th>Estoque Atual</th>
-        </tr>
-        <tr ng-repeat="produto in produtos | filter: filtro" 
-                ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal">
-            <td class="col-md-8">{{produto.descricao}}</td>
-            <td class="col-md-2">{{produto.estoqueMinimo}}</td>
-            <td class="col-sm-2">{{produto.estoqueAtual}}</td>
-        </tr>    
-    </table>    
 
 </div>
