@@ -6,7 +6,6 @@ module.exports = function() {
     var app = express();
 
     app.set('port', 3000);
-    app.use(express.static('node_modules'));
     app.use(express.static('public'));
     app.use(bodyParser.json());
     app.use(require('method-override')());
