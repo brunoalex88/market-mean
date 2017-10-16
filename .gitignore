@@ -5,3 +5,6 @@ package-lock.json
 public/vendor
 *.bat
 *.log.*
+npm-debug.log
+.DS_Store
+/*.env
