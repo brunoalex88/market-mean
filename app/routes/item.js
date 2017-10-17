@@ -6,8 +6,8 @@ module.exports = function(app) {
         .get(controller.listItems)
         .post(controller.salvaItem);
 
-    app.route('/item/:id')
+     app.route('/item/:id')
         .get(controller.listItem)
-        .delete(controller.removeItem);
-        
+        .delete(controller.removeItem); 
+
 };

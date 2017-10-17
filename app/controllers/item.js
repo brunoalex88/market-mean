@@ -1,50 +1,18 @@
-var mongoose = require('mongoose');
-
 module.exports = function(app) {
     
         var controller = {};
-        //var Item = app.models.item;
+        var Item = app.models.item;
     
         controller.listItems = function(req, res) {
-/*             Item.find().exec()
-                .then(function(itens) {
-                    res.json(itens);
-                },
-                function(erro) {
-                    console.log('Erro ao buscar os items: ' + erro);
-                    res.status(500).json('Erro ao buscar os items: ' + erro);
-                }
-            ); */
 
-            var schema = new mongoose.Schema({
-                descricao: {
-                    type: String,
-                    required: true
-                },
-                estoqueMinimo: {
-                    type: Number,
-                    required: true
-                },
-                estoqueAtual: {
-                    type: Number,
-                    required: true
-                }
-            });
-
-            var ItemModel = mongoose.model('Item', schema);
-
-            ItemModel.find({}).exec(function(err, result) {
-                if (!err) {
-                    res.json(result);
-                } else {
-                    console.log('Erro ao buscar os items: ' + erro.message);
-                    res.status(500).json('Erro ao buscar os items: ' + erro.message);                    
-                }
+            Item.find(function (err, items) {
+                if (err) return console.error(err);
+                res.json(items);
             });
 
         };
 
-        controller.listItem = function(req, res) {
+         controller.listItem = function(req, res) {
             var _id = req.params.id;
 
             Item.findById(_id).exec()
@@ -107,7 +75,7 @@ module.exports = function(app) {
                 }
             );
         };
-
+        
         return controller;
     
     };

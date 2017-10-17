@@ -4,6 +4,7 @@ module.exports = function(uri) {
     mongoose.connect(uri);
 
     mongoose.connection.on('connected', function() {
+        mongoose.Promise = global.Promise;
         console.log('Mongoose connected');
     });
 
