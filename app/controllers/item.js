@@ -16,7 +16,7 @@ module.exports = function(app) {
                 }
             ); */
 
-            var schema = mongoose.Schema({
+            var schema = new mongoose.Schema({
                 descricao: {
                     type: String,
                     required: true
@@ -35,7 +35,7 @@ module.exports = function(app) {
 
             ItemModel.find({}).exec(function(err, result) {
                 if (!err) {
-                    res.json(itens);
+                    res.json(result);
                 } else {
                     console.log('Erro ao buscar os items: ' + erro.message);
                     res.status(500).json('Erro ao buscar os items: ' + erro.message);                    
