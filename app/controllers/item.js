@@ -1,7 +1,7 @@
 module.exports = function(app) {
     
         var controller = {};
-        var Item = app.models.item;
+        var Item = app.models.Item;
     
         controller.listItems = function(req, res) {
 
@@ -18,7 +18,8 @@ module.exports = function(app) {
             Item.findById(_id).exec()
                 .then(function(item) {
                     if (!item) {
-                        throw new Error('Item não encontrado');
+                        throw new
+                         Error('Item não encontrado');
                     }
 
                     res.json(item);
