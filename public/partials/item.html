@@ -1,4 +1,4 @@
-<div layout="row" ng-cloak ng-controller="ItemController">
+<div layout="row" ng-cloak ng-controller="ItemController" id="divItems">
 
     <p ng-show="mensagem.texto">
         {{mensagem.texto}}
@@ -9,13 +9,19 @@
         <input type="search" ng-model="filtro" 
                 placeholder="parte do nome" class="form-control">    
     </div>
-    <div layout="row" style="margin-bottom: 10px">
-        <a ng-href="" ng-click="alterar()" data-toggle="modal" 
-                data-target="#produtoModal">Novo produto</a>
-        <span class="divider-vertical"></span>
-        <a nh-href="" ng-click="listaCompras()">Gerar Lista de Compras</a>
+    <div layout="row" style="margin-bottom: 10px">        
+        <button class="btn btn-primary" ng-click="alterar()" data-toggle="modal"
+                data-target="#produtoModal">
+            Novo Produto
+        </button>
+        
+        <label for="toggleLista" style="margin-left: 10px">Exibir lista de compras</label>
+        <input type="checkbox" data-toggle="toggle" id="toggleLista">
+
     </div>
-    
+
+    <p class="font-small">Produtos cadastrados: {{produtos.length}}</p>
+
     <table class="table table-hover table-striped table-condensed table-responsive">
         <tr>
             <th>Descrição</th>
@@ -91,3 +97,15 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $('#toggleLista').bootstrapToggle();
+    $('#toggleLista').change(function() {
+        if ($(this).prop('checked') == true)
+            angular.element(document.getElementById('divItems')).scope().listaCompras();
+        else
+            angular.element(document.getElementById('divItems')).scope().listaProdutos();
+
+        angular.element(document.getElementById('divItems')).scope().$apply();
+    });
+</script>
