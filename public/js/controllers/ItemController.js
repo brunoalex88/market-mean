@@ -20,6 +20,11 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
         }
     };
 
+    $scope.deleteModal = function(produto) {
+        $scope.modalTitle = 'EXCLUIR PRODUTO'
+        $scope.produto = produto;
+    }
+
     $scope.salvarProduto = function() {
         ItemResource.save($scope.produto, function() {
             mensagem = {'texto': 'Produto salvo!'};
