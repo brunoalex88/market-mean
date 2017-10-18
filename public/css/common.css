@@ -44,3 +44,15 @@ body {
     border-left: 1px solid #d2d2d2;
     border-right: 1px solid #FFF;
   }
+
+  .divider-horizontal {
+    height: 10px;
+    margin: 0px;
+    border-top: 1px solid #d2d2d2;
+    border-bottom: 1px solid #FFF;
+  }
+
+  .font-small {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
