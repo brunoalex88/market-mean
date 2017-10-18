@@ -15,9 +15,8 @@
             Novo Produto
         </button>
         
-        <label for="toggleLista" style="margin-left: 10px">Exibir lista de compras</label>
+        <label for="toggleLista" style="margin-left: 10px">Listar compras</label>
         <input type="checkbox" data-toggle="toggle" id="toggleLista">
-
     </div>
 
     <p class="font-small">Produtos cadastrados: {{produtos.length}}</p>
@@ -29,15 +28,18 @@
             <th>Tenho</th>
             <th></th>
         </tr>
-        <tr ng-repeat="produto in produtos | filter: filtro" 
-                ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal">
+        
+        <tr ng-repeat="produto in produtos | filter: filtro">
+                <!-- ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal" -->
             <td class="col-md-9">{{produto.descricao}}</td>
             <td class="col-md-1">{{produto.estoqueMinimo}}</td>
             <td class="col-sm-1">{{produto.estoqueAtual}}</td>
             <td class="col-sm-1">
-                <a ng-href="" ng-click="remover(produto)"><span class="glyphicon glyphicon-trash"></span></a>
+                <a ng-href="" ng-click="deleteModal(produto)"><span class="glyphicon glyphicon-trash" 
+                        data-toggle="modal" data-target="#deleteModal"></span></a>
             </td>
         </tr>    
+        
     </table> 
 
     <div id="produtoModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
@@ -90,11 +92,34 @@
                     <button type="submit" class="btn btn-primary" 
                             ng-click="salvarProduto()" data-dismiss="modal">Salvar</button>
                     <button type="button" class="btn btn-default" 
-                            ng-click="listaProdutos()" data-dismiss="modal">Fechar</button>
+                            data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="deleteModal" class="modal fade" role="dialog" data-keyboard="false">
+            <div class="modal-dialog">
+            
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                        <h4 class="modal-title">{{modalTitle}}</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja excluir o produto: {{produto.descricao}}</p>
+                    </div>
+                
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger" 
+                                ng-click="remover(produto)" data-dismiss="modal">Confirmar</button>
+                        <button type="button" class="btn btn-default" 
+                                ng-click="" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </div>
 
@@ -108,4 +133,7 @@
 
         angular.element(document.getElementById('divItems')).scope().$apply();
     });
+    $('[data-toggle=confirmation]').confirmation({
+        rootSelector: '[data-toggle=confirmation]'
+    });    
 </script>
