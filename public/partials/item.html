@@ -31,7 +31,8 @@
         
         <tr ng-repeat="produto in produtos | filter: filtro">
                 <!-- ng-click="alterar(produto)" data-toggle="modal" data-target="#produtoModal" -->
-            <td class="col-md-9">{{produto.descricao}}</td>
+            <td class="col-md-9"><a ng-click="alterar(produto)" data-toggle="modal" 
+                    data-target="#produtoModal">{{produto.descricao}}</a></td>
             <td class="col-md-1">{{produto.estoqueMinimo}}</td>
             <td class="col-sm-1">{{produto.estoqueAtual}}</td>
             <td class="col-sm-1">
