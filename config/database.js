@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = function(uri) {
     mongoose.connect(uri);
+    mongoose.set('debug', true);
 
     mongoose.connection.on('connected', function() {
         mongoose.Promise = global.Promise;

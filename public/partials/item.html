@@ -1,22 +1,24 @@
+<div class="jumbotron" style="">
+    <h2 class="text-center">Market MEAN - Lista de Compras</h2>
+</div>
+
+<p ng-show="mensagem.texto">
+    {{mensagem.texto}}
+</p>
+
+<button class="btn btn-primary" ng-click="alterar()" data-toggle="modal"
+    data-target="#produtoModal">Novo Produto
+</button>
+
+<label for="toggleLista" style="margin-left: 10px">Listar compras</label>
+<input type="checkbox" data-toggle="toggle" id="toggleLista">
+
 <div layout="row" ng-cloak ng-controller="ItemController" id="divItems">
 
-    <p ng-show="mensagem.texto">
-        {{mensagem.texto}}
-    </p>
-
-    <div class="form-group">
+    <div class="form-group" style="margin-top: 10px">
         <label for="search">Filtrar produtos</label>
         <input type="search" ng-model="filtro" 
                 placeholder="parte do nome" class="form-control">    
-    </div>
-    <div layout="row" style="margin-bottom: 10px">        
-        <button class="btn btn-primary" ng-click="alterar()" data-toggle="modal"
-                data-target="#produtoModal">
-            Novo Produto
-        </button>
-        
-        <label for="toggleLista" style="margin-left: 10px">Listar compras</label>
-        <input type="checkbox" data-toggle="toggle" id="toggleLista">
     </div>
 
     <p class="font-small">Produtos cadastrados: {{produtos.length}}</p>

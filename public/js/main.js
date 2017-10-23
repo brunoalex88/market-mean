@@ -1,9 +1,11 @@
 angular.module('market-mean', ['ngRoute', 'ngResource', 'angular-loading-bar'])
-     .config(function($routeProvider, $locationProvider) {   
+     .config(function($routeProvider, $locationProvider, $httpProvider) {   
 
         $locationProvider.hashPrefix('');
 
-		$routeProvider.when('/item', {
+        $httpProvider.interceptors.push('InterceptorService');
+
+        $routeProvider.when('/', {
 			templateUrl: 'partials/item.html',
 			controller: 'ItemController'
         });
@@ -12,6 +14,10 @@ angular.module('market-mean', ['ngRoute', 'ngResource', 'angular-loading-bar'])
 			templateUrl: 'partials/buy.html',
 			controller: 'ItemController'
         });
+
+        $routeProvider.when('/auth', {
+            templateUrl: 'partials/auth.html'
+        });        
 
         $routeProvider.otherwise({redirectTo: '/'});
 

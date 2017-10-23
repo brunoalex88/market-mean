@@ -7,9 +7,10 @@
         <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css">
         <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nosifer|Open+Sans">
-        <link rel="stylesheet" href="css/common.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/bootstrap-social.css">
         
         <script src="vendor/jquery/dist/jquery.js"></script>
         <link href="vendor/bootstrap-toggle/css/bootstrap-toggle.css" rel="stylesheet">
@@ -21,14 +22,11 @@
     </head>
 
     <body ngcloak class="container">
-            
-        <nav class="navbar navbar-default">
-            <div class="container" ng-controller="ItemController">
-                <ul class="nav navbar-nav">
-                    <li><a ng-href="#/item">Produtos</a></li>         
-                </ul>
-            </div>
-        </nav>
+        
+        <p class="text-center" ng-controller="ItemController"
+                style="margin: 5px 0" ng-show="currentUser">
+            Bem vindo: {{currentUser}} - <a ng-href="/logout">logout</a>
+        </p>
 
         <div ng-view></div>  
               
@@ -39,6 +37,7 @@
         <script src="js/main.js"></script>
         <script src="js/controllers/ItemController.js"></script>
         <script src="js/services/ItemService.js"></script>
+        <script src="js/services/InterceptorService.js"></script>
 
     </body>
 </html>

@@ -1,4 +1,4 @@
-angular.module('market-mean').controller('ItemController', function($scope, ItemResource) {
+angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource) {
 
     $scope.produtos = [];
     $scope.produtosComprar = [];
@@ -6,6 +6,7 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
     $scope.filtro = '';
     $scope.produto = {};
     $scope.modalTitle = '';
+    $scope.currentUser = '';
 
     $scope.alterar = function(produto) {
         if (typeof produto === "undefined") {
@@ -74,6 +75,14 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
         );
     };
 
+    function getUserLogged() {
+        $http.get('/user')
+            .then(function(result) {
+                $scope.currentUser = result.data;
+            }
+        );
+    };
+
     function listaProdutos() {
 
         ItemResource.query(function(produtos) {
@@ -87,5 +96,6 @@ angular.module('market-mean').controller('ItemController', function($scope, Item
     };
 
     listaProdutos();
+    getUserLogged();
 
 });
