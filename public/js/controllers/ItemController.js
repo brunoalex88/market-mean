@@ -88,6 +88,7 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
         ItemResource.query(function(produtos) {
             $scope.produtos = produtos;
             $scope.mensagem = {};
+            $scope.filtro = '';
         },
         function(erro) {
             console.log('Erro ao buscar os itens cadastrados: ' + erro.data);

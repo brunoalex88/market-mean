@@ -17,13 +17,14 @@
 
     <div class="form-group" style="margin-top: 10px">
         <label for="search">Filtrar produtos</label>
-        <input type="search" ng-model="filtro" 
+        <input type="search" ng-model="filtro" id="search"
                 placeholder="parte do nome" class="form-control">    
     </div>
 
     <p class="font-small">Produtos cadastrados: {{produtos.length}}</p>
 
-    <table class="table table-hover table-striped table-condensed table-responsive">
+    <table class="table table-hover table-striped table-condensed table-responsive"
+            id="tableItems">
         <tr>
             <th>Descrição</th>
             <th>Preciso</th>		
@@ -138,5 +139,13 @@
     });
     $('[data-toggle=confirmation]').confirmation({
         rootSelector: '[data-toggle=confirmation]'
-    });    
+    });
+
+    $("#search").addClear({
+        onClear: function() {
+            angular.element(document.getElementById('divItems')).scope().listaProdutos();
+            angular.element(document.getElementById('divItems')).scope().$apply();
+        }
+    });
+    
 </script>
