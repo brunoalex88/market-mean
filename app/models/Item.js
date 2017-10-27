@@ -9,11 +9,13 @@ module.exports = function() {
         },
         estoqueMinimo: {
             type: Number,
-            required: true
+            required: true,
+            default: 0
         },
         estoqueAtual: {
             type: Number,
-            required: true
+            required: true,
+            default: 0
         }
     });
 
