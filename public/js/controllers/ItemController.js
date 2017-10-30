@@ -1,4 +1,4 @@
-angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource, $q) {
+angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource) {
 
     $scope.produtos = [];
     $scope.mensagem = {texto: ''};
@@ -58,20 +58,6 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
         listaProdutos();
     };
 
-    $scope.remover = function(id) {
-        
-		ItemResource.delete({"id": id},
-			chooseList(),
-			function(erro) {
-				console.log(erro);							
-				$scope.mensagem = {
-					texto: 'Não foi possível remover contato'
-				};
-            }
-        );
-
-    };
-
     function getUserLogged() {
         $http.get('/user')
             .then(function(result) {
@@ -117,11 +103,28 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
     
     function chooseList() {
         var checked = document.getElementById('toggleLista').checked;
+        console.log('Checked: ' + checked);
         
-        if (!checked)
+        if (!checked) {
+            console.log('Lista produtos');
             listaProdutos();
-        else
+        } else {
+            console.log('Lista produtos');
             listaCompras();        
+        }
+
+        
+    }
+
+    $scope.remover = function(id) {
+
+        ItemResource.delete({id: id},
+            chooseList,
+            function(erro) {
+                console.log('Não foi possível remover o produto: ' + err);
+                $scope.mensagem = {texto: 'Erro ao remover o produto: ' + erro};                
+            }
+        );
     }
 
     listaProdutos();
