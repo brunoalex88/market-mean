@@ -6,7 +6,7 @@
     {{mensagem.texto}}
 </p>
 
-<div layout="row" ng-cloak ng-controller="ItemController" id="divItems">
+<div layout="row" ng-cloak ng-controller="ItemController">
 
     <button class="btn btn-primary" data-toggle="modal"
         data-target="#produtoModal" ng-click="alterar()">Novo Produto
@@ -117,7 +117,7 @@
             
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger" 
-                            ng-click="remover(produto)" data-dismiss="modal">Confirmar</button>
+                            ng-click="remover(produto._id)" data-dismiss="modal">Confirmar</button>
                     <button type="button" class="btn btn-default" 
                             ng-click="" data-dismiss="modal">Cancelar</button>
                 </div>
@@ -135,8 +135,8 @@
         else
             angular.element(document.getElementById('divItems')).scope().listaProdutos(); */
                 
-        angular.element(document.getElementById('divItems')).scope().chooseList();
-        angular.element(document.getElementById('divItems')).scope().$apply();
+        angular.element(document.getElementById('tableItems')).scope().chooseList();
+        angular.element(document.getElementById('tableItems')).scope().$apply();
     });
     $('[data-toggle=confirmation]').confirmation({
         rootSelector: '[data-toggle=confirmation]'
@@ -144,8 +144,8 @@
 
     $("#search").addClear({
         onClear: function() {
-            angular.element(document.getElementById('divItems')).scope().chooseList();
-            angular.element(document.getElementById('divItems')).scope().$apply();
+            angular.element(document.getElementById('tableItems')).scope().chooseList();
+            angular.element(document.getElementById('tableItems')).scope().$apply();
         }
     });
     

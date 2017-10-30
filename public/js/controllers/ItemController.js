@@ -1,4 +1,4 @@
-angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource) {
+angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource, $q) {
 
     $scope.produtos = [];
     $scope.mensagem = {texto: ''};
@@ -27,15 +27,11 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
         $scope.produto.$save()
             .then(function() {
                 $scope.mensagem = {'texto': 'Produto salvo!'};
-                $scope.chooseList();
+                chooseList();
             })
             .catch(function(err) {
                 $scope.mensagem = {'texto': 'Não foi possível salvar o produto!'};
             });
-/*         ItemResource.save($scope.produto, function() {
-            mensagem = {'texto': 'Produto salvo!'};
-            $scope.chooseList();
-        }); */
     };
 
     $scope.chooseList = function() {
@@ -62,8 +58,9 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
         listaProdutos();
     };
 
-    $scope.remover = function(produto) {
-		ItemResource.delete({id: produto._id},
+    $scope.remover = function(id) {
+        
+		ItemResource.delete({"id": id},
 			chooseList(),
 			function(erro) {
 				console.log(erro);							
@@ -72,6 +69,7 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
 				};
             }
         );
+
     };
 
     function getUserLogged() {
@@ -93,16 +91,28 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
             console.log('Erro ao buscar os itens cadastrados: ' + erro.data);
             $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.data};
         });
+
     };
 
     function listaCompras() {
         var lista = [];
         
-        for (produto in $scope.produtos)
-            if ($scope.produtos[produto].estoqueAtual < $scope.produtos[produto].estoqueMinimo)
-                lista.push($scope.produtos[produto]);
+        ItemResource.query(function(produtos) {
+            $scope.mensagem = {};
+            $scope.filtro = '';
 
-        $scope.produtos = lista;
+            for (p in produtos)
+                if (produtos[p].estoqueAtual < produtos[p].estoqueMinimo)
+                    lista.push(produtos[p]);
+            
+            $scope.produtos = lista;
+
+        },
+        function(erro) {
+            console.log('Erro ao buscar os itens cadastrados: ' + erro.data);
+            $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.data};
+        });
+
     };  
     
     function chooseList() {
