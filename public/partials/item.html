@@ -2,11 +2,12 @@
     <h2 class="text-center">Market MEAN - Lista de Compras</h2>
 </div>
 
-<p ng-show="mensagem.texto">
+<div class="alert alert-success alert-dismissable" ng-show="mensagem.texto">
+    <a class="close" onclick="$('.alert').hide()">×</a>
     {{mensagem.texto}}
-</p>
+</div>
 
-<div layout="row" ng-cloak ng-controller="ItemController">
+<div layout="row" ng-cloak>
 
     <button class="btn btn-primary" data-toggle="modal"
         data-target="#produtoModal" ng-click="alterar()">Novo Produto
