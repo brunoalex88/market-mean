@@ -1,4 +1,4 @@
-angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource) {
+angular.module('market-mean').controller('ItemController', function($scope, $http, ItemResource, $log) {
 
     $scope.produtos = [];
     $scope.mensagem = {texto: ''};
@@ -7,6 +7,8 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
     $scope.currentUser = '';
 
     $scope.alterar = function(produto) {
+        $log.info('$scope.alterar');
+
         if (typeof produto === "undefined") {
             $scope.produto = new ItemResource();
             $scope.produto.estoqueAtual = 0;
@@ -19,46 +21,55 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
     };
 
     $scope.deleteModal = function(produto) {
+        $log.info('$scope.deleteModal');
         $scope.modalTitle = 'EXCLUIR PRODUTO'
         $scope.produto = produto;
     }
 
     $scope.salvarProduto = function() {
+        $log.info('$scope.salvarProduto');
         $scope.produto.$save()
             .then(function() {
-                $scope.mensagem = {'texto': 'Produto salvo!'};
+                $scope.mensagem = {texto: 'Produto salvo com sucesso!'};
                 chooseList();
             })
             .catch(function(err) {
-                $scope.mensagem = {'texto': 'Não foi possível salvar o produto!'};
+                $scope.mensagem = {texto: 'Não foi possível salvar o produto!'};
             });
     };
 
     $scope.chooseList = function() {
+        $log.info('$scope.chooseList');
         chooseList();
     };
 
     $scope.aumentaEstoqueMinimo = function() {
+        $log.info('$scope.aumentaEstoqueMinimo');
         $scope.produto.estoqueMinimo++;
     };
 
     $scope.diminuiEstoqueMinimo = function() {
+        $log.info('$scope.diminuiEstoqueMinimo');
         $scope.produto.estoqueMinimo--;
     };
 
     $scope.aumentaEstoqueAtual = function() {
+        $log.info('$scope.aumentaEstoqueAtual');
         $scope.produto.estoqueAtual++;
     };
 
     $scope.diminuiEstoqueAtual = function() {
+        $log.info('$scope.diminuiEstoqueAtual');
         $scope.produto.estoqueAtual--;
     };
 
     $scope.listaProdutos = function() {
+        $log.info('$scope.listaProdutos');
         listaProdutos();
     };
 
     function getUserLogged() {
+        $log.info('getUserLogged');
         $http.get('/user')
             .then(function(result) {
                 $scope.currentUser = result.data;
@@ -67,24 +78,24 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
     };
 
     function listaProdutos() {
+        $log.info('listaProdutos');
 
         ItemResource.query(function(produtos) {
             $scope.produtos = produtos;
-            $scope.mensagem = {};
             $scope.filtro = '';
         },
         function(erro) {
-            console.log('Erro ao buscar os itens cadastrados: ' + erro.data);
+            $log.info('Erro ao buscar os itens cadastrados: ' + erro.data);
             $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.data};
         });
 
     };
 
     function listaCompras() {
+        $log.info('listaCompras');
         var lista = [];
         
         ItemResource.query(function(produtos) {
-            $scope.mensagem = {};
             $scope.filtro = '';
 
             for (p in produtos)
@@ -95,33 +106,33 @@ angular.module('market-mean').controller('ItemController', function($scope, $htt
 
         },
         function(erro) {
-            console.log('Erro ao buscar os itens cadastrados: ' + erro.data);
+            $log.info('Erro ao buscar os itens cadastrados: ' + erro.data);
             $scope.mensagem = {texto: 'Erro ao buscar os itens cadastrados: ' + erro.data};
         });
 
     };  
     
     function chooseList() {
+        $log.info('chooseList');
         var checked = document.getElementById('toggleLista').checked;
-        console.log('Checked: ' + checked);
+        $log.info('Checked: ' + checked);
         
         if (!checked) {
-            console.log('Lista produtos');
+            $log.info('Lista produtos');
             listaProdutos();
         } else {
-            console.log('Lista produtos');
+            $log.info('Lista produtos');
             listaCompras();        
         }
-
-        
     }
 
     $scope.remover = function(id) {
+        $log.info('$scope.remover');
 
         ItemResource.delete({id: id},
             chooseList,
             function(erro) {
-                console.log('Não foi possível remover o produto: ' + err);
+                $log.info('Não foi possível remover o produto: ' + err);
                 $scope.mensagem = {texto: 'Erro ao remover o produto: ' + erro};                
             }
         );
